@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.Random;
+// New repositori test
 public class Main {
 
     private static void menu(){
