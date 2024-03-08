@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 public class Main {
-
+    String[] jugadors = new String[4];
     Scanner input = new Scanner(System.in);
 
     public static int jugadores = 0;
@@ -94,6 +94,20 @@ public class Main {
     }
     private static void ordenjugadores(){
         //code ivan
+        Random random = new Random();
+        int dau = 0;
+        String[] x = new String[4];
+        int[] daus = new int[4];
+        for (int i=0; i<4; i++) {
+            System.out.println("Escriu el nom de un jugador");
+        }
+        System.out.println("Ara es tiraran els daus per decidir l'ordre");
+
+        for(int i=0; i<4; i++) {
+            dau = random.nextInt();
+            for(int j=0; j<4; j++) {
+            }
+        }
     }
     private static void asignacionterritorios(){
         if (jugadores == 0) {
