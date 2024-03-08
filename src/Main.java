@@ -1,17 +1,38 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.util.Scanner;
+import java.util.Random;
+// Project moved to another repositori together with classmates
+//Risk Game
 public class Main {
-    public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    Scanner input = new Scanner(System.in);
+    private static void menu(){
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+}
+    private static void ordenjugadores(){
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+    }
+    private static void asignacionterritorios(){
+
+    }
+    private static void turnojugador(){
+
+    }
+    private static void estadoactual(){
+
+    }
+    private static void invadirterritorio(){
+
+    }
+    private static void ganarterrtorio(){
+
+    }
+    private static void eliminarterritorio(){
+
+    }
+    private static void ganarpartida(){
+
+    }
+
+    private static void invadirfrancia(){
+
     }
 }
