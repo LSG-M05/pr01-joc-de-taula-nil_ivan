@@ -6,6 +6,7 @@ public class Main {
     Scanner input = new Scanner(System.in);
 
     public static int jugadores = 0;
+    public static int[] territorios = new int[17];
 
     //Declaración variables comunidades autónomas
     public static int galicia = 2;
@@ -110,15 +111,30 @@ public class Main {
             }
         }
     }
-    private static void asignacionterritorios(){
+    private static void asignacionterritorios() {
         if (jugadores == 0) {
             System.out.println("No hay jugadores para asignar territorios");
             return;
-        }else{
-
         }
-        //code nil
 
+        int[] territoriosPorJugador = new int[jugadores];
+        Random random = new Random();
+
+        for (int i = 0; i < territoriosPorJugador.length; i++) {
+            territoriosPorJugador[i] = 0;
+        }
+
+        for (int i = 0; i < territorios.length; i++) {
+            if (territorios[i] > 0) {
+                int randomPlayer = random.nextInt(jugadores);
+                territoriosPorJugador[randomPlayer]++;
+                territorios[i]--;
+            }
+        }
+
+        for (int i = 0; i < territoriosPorJugador.length; i++) {
+            System.out.println("Jugador " + (i + 1) + " tiene " + territoriosPorJugador[i] + " territorios.");
+        }
     }
     private static void turnojugador(){
 
