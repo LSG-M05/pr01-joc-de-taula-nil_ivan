@@ -93,7 +93,7 @@ public class Main {
 
     }
     private static void ordenjugadores(){
-        //code ivan
+        //code ivan, mètode per ordre jugadors
         Random random = new Random();
         int dau = 0;
         String[] x = new String[4];
