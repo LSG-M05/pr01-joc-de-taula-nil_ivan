@@ -103,9 +103,10 @@ public class Main {
         }
         System.out.println("Ara es tiraran els daus per decidir l'ordre");
 
-        for(int i=0; i<4; i++) {
-            dau = random.nextInt();
-            for(int j=0; j<4; j++) {
+        for(int i=0; i<daus.length; i++) {
+            dau = random.nextInt(6) + 1;
+            boolean repetit;
+            for(int j=0; j<daus.length; j++) {
             }
         }
     }
