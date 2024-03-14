@@ -217,7 +217,84 @@ public class Main {
             }
             System.out.println("Has invadido con éxito el territorio.");
         }
+    private void ganarTerritorio(int jugador) {
+        Random random = new Random();
+        int probabilidad = random.nextInt(2); // 50% de probabilidad
 
+        if (probabilidad == 0) {
+            // El jugador gana la batalla
+            System.out.println("¡Has ganado la batalla!");
+            invadirTerritorio(jugador); // Se suman los soldados al territorio
+        } else {
+            // El jugador pierde la batalla
+            System.out.println("¡Has perdido la batalla!");
+        }
+    }
+
+    private void eliminarTerritorio(int jugador) {
+        Random random = new Random();
+        int probabilidad = random.nextInt(2); // 50% de probabilidad
+
+        if (probabilidad == 0) {
+            // El jugador pierde el territorio
+            switch (jugador) {
+                case 1:
+                    galicia = 0;
+                    break;
+                case 2:
+                    asturias = 0;
+                    break;
+                case 3:
+                    cantabria = 0;
+                    break;
+                case 4:
+                    pais_vasco = 0;
+                    break;
+                case 5:
+                    navarra = 0;
+                    break;
+                case 6:
+                    la_rioja = 0;
+                    break;
+                case 7:
+                    aragon = 0;
+                    break;
+                case 8:
+                    cataluna = 0;
+                    break;
+                case 9:
+                    castilla_y_leon = 0;
+                    break;
+                case 10:
+                    madrid = 0;
+                    break;
+                case 11:
+                    castilla_la_mancha = 0;
+                    break;
+                case 12:
+                    extremadura = 0;
+                    break;
+                case 13:
+                    andalucia = 0;
+                    break;
+                case 14:
+                    murcia = 0;
+                    break;
+                case 15:
+                    canarias = 0;
+                    break;
+                case 16:
+                    baleares = 0;
+                    break;
+                default:
+                    break;
+            }
+            System.out.println("Has perdido el territorio.");
+        } else {
+            // El jugador conserva el territorio
+            System.out.println("Has mantenido tu territorio.");
+        }
+    }
     private static void ganarPartida(){
 
     }
