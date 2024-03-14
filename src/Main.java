@@ -23,7 +23,7 @@ public class Main {
     public static int extremadura = 2;
     public static int andalucia = 2;
     public static int murcia = 2;
-    public static int canatias = 2;
+    public static int canarias = 2;
     public static int baleares = 2;
 
 
@@ -37,63 +37,40 @@ public class Main {
     public void init() {
         int menuItem = 0;
         do {
-            System.out.println("1. Agregar jugador");
-            System.out.println("2. Asignar territorios");
-            System.out.println("3. Turno del jugador");
-            System.out.println("4. Estado actual");
-            System.out.println("5. Invadir territorio");
-            System.out.println("6. Ganar territorio");
-            System.out.println("7. Eliminar territorio");
-            System.out.println("8. Ganar partida");
-            System.out.println("9. Invadir francia");
-            System.out.println("10. Salir");
+            System.out.println("------- Menú -------");
+            System.out.println("1. Nueva partida");
+            System.out.println("2. Salir");
             System.out.print("Ingrese la opción: ");
 
             if (input.hasNextInt()) {
                 menuItem = input.nextInt();
                 switch (menuItem) {
                     case 1:
-                        ordenjugadores();
+                        nuevaPartida();
                         break;
                     case 2:
-                        asignacionterritorios();
-                        break;
-                    case 3:
-                        turnojugador();
-                        break;
-                    case 4:
-                        estadoactual();
-                        break;
-                    case 5:
-                        invadirterritorio();
-                        break;
-                    case 6:
-                        ganarterrtorio();
-                        break;
-                    case 7:
-                        eliminarterritorio();
-                        break;
-                    case 8:
-                        ganarpartida();
-                        break;
-                    case 9:
-                        invadirfrancia();
-                        break;
-                    case 10:
+                        System.out.println("Saliendo del juego...");
                         break;
                     default:
                         System.out.println("Opción no válida");
                 }
-            }else{
-                System.out.println("Opción no valida");
+            } else {
+                System.out.println("Opción no válida");
             }
             input.nextLine();
             System.out.println("");
 
-        }while(menuItem!=10);
+        } while (menuItem != 2);
 
     }
-    private static void ordenjugadores(){
+    private void nuevaPartida() {
+        // Lógica para una nueva partida
+        System.out.println("Iniciando una nueva partida...");
+        ordenJugadores();
+        asignacionTerritorios();
+        turnoJugador();
+    }
+    private static void ordenJugadores(){
         //code ivan, mètode per ordre jugadors
         Random random = new Random();
         int dau = 0;
@@ -111,51 +88,94 @@ public class Main {
             }
         }
     }
-    private static void asignacionterritorios() {
+    private void asignacionTerritorios() {
         if (jugadores == 0) {
             System.out.println("No hay jugadores para asignar territorios");
             return;
         }
 
-        int[] territoriosPorJugador = new int[jugadores];
         Random random = new Random();
-
-        for (int i = 0; i < territoriosPorJugador.length; i++) {
-            territoriosPorJugador[i] = 0;
-        }
 
         for (int i = 0; i < territorios.length; i++) {
             if (territorios[i] > 0) {
                 int randomPlayer = random.nextInt(jugadores);
-                territoriosPorJugador[randomPlayer]++;
-                territorios[i]--;
+                switch (i) {
+                    case 0:
+                        galicia--;
+                        break;
+                    case 1:
+                        asturias--;
+                        break;
+                    case 2:
+                        cantabria--;
+                        break;
+                    case 3:
+                        pais_vasco--;
+                        break;
+                    case 4:
+                        navarra--;
+                        break;
+                    case 5:
+                        la_rioja--;
+                        break;
+                    case 6:
+                        aragon--;
+                        break;
+                    case 7:
+                        cataluña--;
+                        break;
+                    case 8:
+                        castilla_y_leon--;
+                        break;
+                    case 9:
+                        madrid--;
+                        break;
+                    case 10:
+                        castilla_la_mancha--;
+                        break;
+                    case 11:
+                        extremadura--;
+                        break;
+                    case 12:
+                        andalucia--;
+                        break;
+                    case 13:
+                        murcia--;
+                        break;
+                    case 14:
+                        canarias--;
+                        break;
+                    case 15:
+                        baleares--;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
-        for (int i = 0; i < territoriosPorJugador.length; i++) {
-            System.out.println("Jugador " + (i + 1) + " tiene " + territoriosPorJugador[i] + " territorios.");
-        }
+        System.out.println("Asignación de territorios completada.");
     }
-    private static void turnojugador(){
+    private static void turnoJugador(){
 
     }
-    private static void estadoactual(){
+    private static void estadoActual(){
 
     }
-    private static void invadirterritorio(){
-
+    private static void invadirTerritorio(){
+        //nil
     }
-    private static void ganarterrtorio(){
-
+    private static void ganarTerrtorio(){
+        //nil
     }
-    private static void eliminarterritorio(){
-
+    private static void eliminarTerritorio(){
+        //nil
     }
-    private static void ganarpartida(){
+    private static void ganarPartida(){
 
     }
 
-    private static void invadirfrancia(){
+    private static void invadirFrancia(){
 
     }
 }
