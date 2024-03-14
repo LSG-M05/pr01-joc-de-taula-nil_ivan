@@ -16,7 +16,7 @@ public class Main {
     public static int navarra = 2;
     public static int la_rioja = 2;
     public static int aragon = 2;
-    public static int cataluña = 2;
+    public static int cataluna = 2;
     public static int castilla_y_leon = 2;
     public static int madrid = 2;
     public static int castilla_la_mancha = 2;
@@ -122,7 +122,7 @@ public class Main {
                         aragon--;
                         break;
                     case 7:
-                        cataluña--;
+                        cataluna--;
                         break;
                     case 8:
                         castilla_y_leon--;
@@ -156,21 +156,68 @@ public class Main {
 
         System.out.println("Asignación de territorios completada.");
     }
-    private static void turnoJugador(){
-
+    private void turnoJugador() {
     }
     private static void estadoActual(){
 
     }
-    private static void invadirTerritorio(){
-        //nil
-    }
-    private static void ganarTerrtorio(){
-        //nil
-    }
-    private static void eliminarTerritorio(){
-        //nil
-    }
+    private static void invadirTerritorio(int jugador){
+        // Sumar los soldados al territorio
+        switch (jugador) {
+            case 1:
+                galicia += 2;
+                break;
+            case 2:
+                asturias += 2;
+                break;
+            case 3:
+                cantabria += 2;
+                break;
+            case 4:
+                pais_vasco += 2;
+                break;
+            case 5:
+                navarra += 2;
+                break;
+            case 6:
+                la_rioja += 2;
+                break;
+            case 7:
+                aragon += 2;
+                break;
+            case 8:
+                cataluna += 2;
+                break;
+            case 9:
+                castilla_y_leon += 2;
+                break;
+            case 10:
+                madrid += 2;
+                break;
+            case 11:
+                castilla_la_mancha += 2;
+                break;
+            case 12:
+                extremadura += 2;
+                break;
+            case 13:
+                andalucia += 2;
+                break;
+            case 14:
+                murcia += 2;
+                break;
+            case 15:
+                canarias += 2;
+                break;
+            case 16:
+                baleares += 2;
+                break;
+            default:
+                break;
+            }
+            System.out.println("Has invadido con éxito el territorio.");
+        }
+
     private static void ganarPartida(){
 
     }
