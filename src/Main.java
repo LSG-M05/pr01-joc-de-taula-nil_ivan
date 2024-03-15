@@ -29,8 +29,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Main main = new Main();
-        main.init();
+        //Main main = new Main();
+        //main.init();
+        String[] ordre = new String[4];
+        ordre = ordenJugadores();
+        for (int i = 0; i < ordre.length; i++) {
+            System.out.println(ordre[i]);
+        }
 
     }
 
@@ -63,6 +68,7 @@ public class Main {
         } while (menuItem != 2);
 
     }
+
     private void nuevaPartida() {
         // Lógica para una nueva partida
         System.out.println("Iniciando una nueva partida...");
@@ -70,24 +76,49 @@ public class Main {
         asignacionTerritorios();
         turnoJugador();
     }
-    private static void ordenJugadores(){
+
+    private static String[] ordenJugadores() {
         //code ivan, mètode per ordre jugadors
+        Scanner input = new Scanner(System.in);
         Random random = new Random();
-        int dau = 0;
         String[] x = new String[4];
         int[] daus = new int[4];
-        for (int i=0; i<4; i++) {
+        String[] ordre_final = new String[4];
+        for (int i = 0; i < 4; i++) {
             System.out.println("Escriu el nom de un jugador");
+            x[i] = input.next();
         }
-        System.out.println("Ara es tiraran els daus per decidir l'ordre");
+        System.out.println("Ara es decidirà l'ordre aleatoriament");
 
-        for(int i=0; i<daus.length; i++) {
-            dau = random.nextInt(6) + 1;
+        for (int i = 0; i < daus.length; i++) {
+            int dau;
             boolean repetit;
-            for(int j=0; j<daus.length; j++) {
+            do {
+                repetit = false;
+                dau = random.nextInt(4) + 1;
+                for (int j = 0; j < i; j++) {
+                    if (dau == daus[j]) {
+                        repetit = true;
+                        break;
+                    }
+                }
+                daus[i] = dau;
+            } while (repetit);
+        }
+        for (int i = 0; i < daus.length; i++) {
+            if (daus[i] == 1) {
+                ordre_final[i] = x[0];
+            } else if (daus[i] == 2) {
+                ordre_final[i] = x[1];
+            } else if (daus[i] == 3) {
+                ordre_final[i] = x[2];
+            } else if (daus[i] == 4) {
+                ordre_final[i] = x[3];
             }
         }
+        return ordre_final;
     }
+
     private void asignacionTerritorios() {
         if (jugadores == 0) {
             System.out.println("No hay jugadores para asignar territorios");
@@ -156,12 +187,15 @@ public class Main {
 
         System.out.println("Asignación de territorios completada.");
     }
+
     private void turnoJugador() {
     }
-    private static void estadoActual(){
+
+    private static void estadoActual() {
 
     }
-    private static void invadirTerritorio(int jugador){
+
+    private static void invadirTerritorio(int jugador) {
         // Sumar los soldados al territorio
         switch (jugador) {
             case 1:
@@ -214,9 +248,10 @@ public class Main {
                 break;
             default:
                 break;
-            }
-            System.out.println("Has invadido con éxito el territorio.");
         }
+        System.out.println("Has invadido con éxito el territorio.");
+    }
+
     private void ganarTerritorio(int jugador) {
         Random random = new Random();
         int probabilidad = random.nextInt(2); // 50% de probabilidad
@@ -294,12 +329,15 @@ public class Main {
             // El jugador conserva el territorio
             System.out.println("Has mantenido tu territorio.");
         }
-    }
-    private static void ganarPartida(){
+        //code nil
 
     }
 
-    private static void invadirFrancia(){
+    private static void ganarPartida() {
+
+    }
+
+    private static void ganarpartida() {
 
     }
 }
