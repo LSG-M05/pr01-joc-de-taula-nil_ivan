@@ -80,15 +80,9 @@ public class Main {
             System.out.println("Escriu el nom de un jugador");
         }
         System.out.println("Ara es tiraran els daus per decidir l'ordre");
+        System.out.println("Ara es tiraran els daus per decidir l'ordre");
+        System.out.println("Ara es tiraran els daus per decidir l'ordre");
 
-        for(int i=0; i<daus.length; i++) {
-            dau = random.nextInt(6) + 1;
-            boolean repetit;
-            for(int j=0; j<daus.length; j++) {
-            }
-        }
-    }
-    private void asignacionTerritorios() {
         if (jugadores == 0) {
             System.out.println("No hay jugadores para asignar territorios");
             return;
