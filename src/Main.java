@@ -29,13 +29,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //Main main = new Main();
-        //main.init();
-        String[] ordre = new String[4];
-        ordre = ordenJugadores();
-        for (int i = 0; i < ordre.length; i++) {
-            System.out.println(ordre[i]);
-        }
+        Main main = new Main();
+        main.init();
 
     }
 
@@ -68,7 +63,6 @@ public class Main {
         } while (menuItem != 2);
 
     }
-
     private void nuevaPartida() {
         // Lógica para una nueva partida
         System.out.println("Iniciando una nueva partida...");
@@ -187,7 +181,6 @@ public class Main {
 
         System.out.println("Asignación de territorios completada.");
     }
-
     private void turnoJugador() {
     }
 
@@ -248,10 +241,9 @@ public class Main {
                 break;
             default:
                 break;
+            }
+            System.out.println("Has invadido con éxito el territorio.");
         }
-        System.out.println("Has invadido con éxito el territorio.");
-    }
-
     private void ganarTerritorio(int jugador) {
         Random random = new Random();
         int probabilidad = random.nextInt(2); // 50% de probabilidad
@@ -329,15 +321,12 @@ public class Main {
             // El jugador conserva el territorio
             System.out.println("Has mantenido tu territorio.");
         }
-        //code nil
+    }
+    private static void ganarPartida(){
 
     }
 
-    private static void ganarPartida() {
-
-    }
-
-    private static void ganarpartida() {
+    private static void invadirFrancia(){
 
     }
 }
