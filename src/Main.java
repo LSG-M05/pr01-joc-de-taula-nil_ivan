@@ -28,8 +28,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Main main = new Main();
-        main.init();
+        //Main main = new Main();
+        //main.init();
+        String[] ordre = new String[4];
+        ordre = ordenjugadores();
+        for(int i=0; i<ordre.length; i++) {
+            System.out.println(ordre[i]);
+        }
 
     }
 
@@ -92,21 +97,43 @@ public class Main {
         }while(menuItem!=10);
 
     }
-    private static void ordenjugadores(){
-        //code ivan, mètode per ordre jugadors
+    private static String[] ordenjugadores(){
+        //code ivan
+        Scanner input = new Scanner(System.in);
         Random random = new Random();
-        int dau = 0;
         String[] x = new String[4];
         int[] daus = new int[4];
+        String[] ordre_final = new String[4];
         for (int i=0; i<4; i++) {
             System.out.println("Escriu el nom de un jugador");
+            x[i] = input.next();
         }
-        System.out.println("Ara es tiraran els daus per decidir l'ordre");
+        System.out.println("Ara es decidirà l'ordre aleatoriament");
 
         for(int i=0; i<daus.length; i++) {
-            dau = random.nextInt(6) + 1;
+            int dau;
             boolean repetit;
-            for(int j=0; j<daus.length; j++) {
+            do {
+                repetit = false;
+                dau = random.nextInt(4) + 1;
+                for(int j=0; j<i; j++) {
+                    if(dau == daus[j]) {
+                        repetit = true;
+                        break;
+                    }
+                }
+                daus[i] = dau;
+            } while(repetit);
+        }
+        for(int i=0; i<daus.length; i++) {
+            if(daus[i] == 1){
+                ordre_final[i] = x[0];
+            } else if (daus[i] == 2) {
+                ordre_final[i] = x[1];
+            } else if (daus[i] == 3) {
+                ordre_final[i] = x[2];
+            } else if (daus[i] == 4) {
+                ordre_final[i] = x[3];
             }
         }
     }
