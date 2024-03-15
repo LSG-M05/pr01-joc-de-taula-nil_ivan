@@ -136,6 +136,7 @@ public class Main {
                 ordre_final[i] = x[3];
             }
         }
+        return ordre_final;
     }
     private static void asignacionterritorios(){
         if (jugadores == 0) {
