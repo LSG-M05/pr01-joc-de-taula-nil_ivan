@@ -5,7 +5,7 @@ public class Main {
     String[] jugadors = new String[4];
     Scanner input = new Scanner(System.in);
 
-    public static int jugadores = 0;
+    public static int jugadores = 4;
     public static int[] territorios = new int[17];
 
     //Declaración variables comunidades autónomas
@@ -120,11 +120,6 @@ public class Main {
     }
 
     private void asignacionTerritorios() {
-        if (jugadores == 0) {
-            System.out.println("No hay jugadores para asignar territorios");
-            return;
-        }
-
         Random random = new Random();
 
         for (int i = 0; i < territorios.length; i++) {
