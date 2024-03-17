@@ -721,7 +721,7 @@ public class Main {
             System.out.println("Has perdido el territorio.");
         } else {
             // El jugador conserva el territorio
-            System.out.println("Has mantenido tu territorio.");
+            System.out.println("Has mantenido tu territorio. ");
         }
     }
     private static boolean ganarPartida(String[] jugador){
