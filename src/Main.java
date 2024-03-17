@@ -1,14 +1,22 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 public class Main {
-    String[] jugadors = new String[4];
+    public String[] jugadors = new String[4];
+    public boolean ganar = false;
+    public String[] jugador1 = {"galicia", "asturias", "cantabria", "pais vasco", "", "", "", "", ""};
+    public String[] jugador2 = {"navarra", "la rioja", "aragon", "cataluña", "", "", "", "", ""};
+    public String[] jugador3 = {"castilla y leon", "madrid", "castilla la mancha", "extremadura", "", "", "", "", ""};
+    public String[] jugador4 = {"andalucia", "murcia", "canarias", "baleares", "", "", "", "", ""};
     Scanner input = new Scanner(System.in);
 
     public static int jugadores = 4;
     public static int[] territorios = new int[17];
 
     //Declaración variables comunidades autónomas
+    private static final Map<String, Integer> comunitats = new HashMap<>();
     public static int galicia = 2;
     public static int asturias = 2;
     public static int cantabria = 2;
@@ -28,9 +36,26 @@ public class Main {
 
 
     public static void main(String[] args) {
+        comunitats.put("galicia", 2);
+        comunitats.put("asturias", 2);
+        comunitats.put("cantabria", 2);
+        comunitats.put("pais vasco", 2);
+        comunitats.put("navarra", 2);
+        comunitats.put("la rioja", 2);
+        comunitats.put("aragon", 2);
+        comunitats.put("cataluna", 2);
+        comunitats.put("castilla y leon", 2);
+        comunitats.put("madrid", 2);
+        comunitats.put("castilla la mancha", 2);
+        comunitats.put("extremadura", 2);
+        comunitats.put("andalucia", 2);
+        comunitats.put("murcia", 2);
+        comunitats.put("canarias", 2);
+        comunitats.put("baleares", 2);
 
         Main main = new Main();
         main.init();
+
 
     }
 
@@ -66,9 +91,9 @@ public class Main {
     private void nuevaPartida() {
         // Lógica para una nueva partida
         System.out.println("Iniciando una nueva partida...");
-        ordenJugadores();
+        jugadors = ordenJugadores();
         asignacionTerritorios();
-        turnoJugador();
+        turnoJugador1();
     }
 
     private static String[] ordenJugadores() {
@@ -176,7 +201,181 @@ public class Main {
 
         System.out.println("Asignación de territorios completada.");
     }
-    private void turnoJugador() {
+    public void turnoJugador1() {
+        int option = 0;
+        String afegir_soldats;
+        boolean comprobacio;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Torn de " + jugadors[0] + ".");
+        System.out.println("Guanyes 2 soldats per inici de torn, a quina comunitat els vols posar?");
+        do {
+            comprobacio = true;
+            afegir_soldats = input.next();
+            for (int i=0; i<jugador1.length; i++){
+                if (afegir_soldats.equals(jugador1[i])) {
+                    comprobacio = false;
+                }
+            }
+            if(comprobacio){
+                System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no és de la teva propietat, si us plau, insereixi una que sigui teva.");
+            }
+        } while(comprobacio);
+        int valor_actual = comunitats.get(afegir_soldats);
+        comunitats.put(afegir_soldats, valor_actual + 2);
+        System.out.println("S'han afegit 2 soldats a la comunitat autònoma de " + afegir_soldats + ".");
+        System.out.println("Actualment el mapa queda així:");
+        for(Map.Entry<String, Integer> entry : comunitats.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
+        }
+        do {
+            System.out.println("Què vols fer?");
+            System.out.println("1. Atacar una comunitat");
+            System.out.println("2. Passar torn");
+            option = input.nextInt();
+            if (option < 1 || option > 2) {
+                System.out.println("ERROR! Posa una opció vàlida.");
+            }
+        } while(option < 1 || option > 2);
+        switch (option) {
+            case 1:
+
+                break;
+            case 2:
+                turnoJugador2();
+                break;
+        }
+    }
+
+    public void turnoJugador2(){
+        int option = 0;
+        String afegir_soldats;
+        boolean comprobacio;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Torn de " + jugadors[1] + ".");
+        System.out.println("Guanyes 2 soldats per inici de torn, a quina comunitat els vols posar?");
+        do {
+            comprobacio = true;
+            afegir_soldats = input.next();
+            for (int i=0; i<jugador2.length; i++){
+                if (afegir_soldats.equals(jugador2[i])) {
+                    comprobacio = false;
+                }
+            }
+            if(comprobacio){
+                System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no és de la teva propietat, si us plau, insereixi una que sigui teva.");
+            }
+        } while(comprobacio);
+        int valor_actual = comunitats.get(afegir_soldats);
+        comunitats.put(afegir_soldats, valor_actual + 2);
+        System.out.println("S'han afegit 2 soldats a la comunitat autònoma de " + afegir_soldats + ".");
+        System.out.println("Actualment el mapa queda així:");
+        for(Map.Entry<String, Integer> entry : comunitats.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
+        }
+        do {
+            System.out.println("Què vols fer?");
+            System.out.println("1. Atacar una comunitat");
+            System.out.println("2. Passar torn");
+            option = input.nextInt();
+            if (option < 1 || option > 2) {
+                System.out.println("ERROR! Posa una opció vàlida.");
+            }
+        } while(option < 1 || option > 2);
+        switch (option) {
+            case 1:
+                break;
+            case 2:
+                turnoJugador3();
+                break;
+        }
+    }
+
+    public void turnoJugador3(){
+        int option = 0;
+        String afegir_soldats;
+        boolean comprobacio;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Torn de " + jugadors[2] + ".");
+        System.out.println("Guanyes 2 soldats per inici de torn, a quina comunitat els vols posar?");
+        do {
+            comprobacio = true;
+            afegir_soldats = input.next();
+            for (int i=0; i<jugador3.length; i++){
+                if (afegir_soldats.equals(jugador3[i])) {
+                    comprobacio = false;
+                }
+            }
+            if(comprobacio){
+                System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no és de la teva propietat, si us plau, insereixi una que sigui teva.");
+            }
+        } while(comprobacio);
+        int valor_actual = comunitats.get(afegir_soldats);
+        comunitats.put(afegir_soldats, valor_actual + 2);
+        System.out.println("S'han afegit 2 soldats a la comunitat autònoma de " + afegir_soldats + ".");
+        System.out.println("Actualment el mapa queda així:");
+        for(Map.Entry<String, Integer> entry : comunitats.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
+        }
+        do {
+            System.out.println("Què vols fer?");
+            System.out.println("1. Atacar una comunitat");
+            System.out.println("2. Passar torn");
+            option = input.nextInt();
+            if (option < 1 || option > 2) {
+                System.out.println("ERROR! Posa una opció vàlida.");
+            }
+        } while(option < 1 || option > 2);
+        switch (option) {
+            case 1:
+                break;
+            case 2:
+                turnoJugador4();
+                break;
+        }
+    }
+
+    public void turnoJugador4(){
+        int option = 0;
+        String afegir_soldats;
+        boolean comprobacio;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Torn de " + jugadors[3] + ".");
+        System.out.println("Guanyes 2 soldats per inici de torn, a quina comunitat els vols posar?");
+        do {
+            comprobacio = true;
+            afegir_soldats = input.next();
+            for (int i=0; i<jugador4.length; i++){
+                if (afegir_soldats.equals(jugador4[i])) {
+                    comprobacio = false;
+                }
+            }
+            if(comprobacio){
+                System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no és de la teva propietat, si us plau, insereixi una que sigui teva.");
+            }
+        } while(comprobacio);
+        int valor_actual = comunitats.get(afegir_soldats);
+        comunitats.put(afegir_soldats, valor_actual + 2);
+        System.out.println("S'han afegit 2 soldats a la comunitat autònoma de " + afegir_soldats + ".");
+        System.out.println("Actualment el mapa queda així:");
+        for(Map.Entry<String, Integer> entry : comunitats.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
+        }
+        do {
+            System.out.println("Què vols fer?");
+            System.out.println("1. Atacar una comunitat");
+            System.out.println("2. Passar torn");
+            option = input.nextInt();
+            if (option < 1 || option > 2) {
+                System.out.println("ERROR! Posa una opció vàlida.");
+            }
+        } while(option < 1 || option > 2);
+        switch (option) {
+            case 1:
+                break;
+            case 2:
+                turnoJugador1();
+                break;
+        }
     }
 
     private static void estadoActual() {
@@ -317,10 +516,19 @@ public class Main {
             System.out.println("Has mantenido tu territorio.");
         }
     }
-    private static void ganarPartida(){
-
+    private static boolean ganarPartida(String[] jugador){
+        boolean ganador = false;
+        int contador = 0;
+        for(int i=0; i < jugador.length; i++) {
+            if (jugador[i] != null) {
+                contador = contador + 1;
+            }
+        }
+        if (contador == 9){
+            ganador = true;
+        }
+        return ganador;
     }
-
     private static void invadirFrancia(){
 
     }
