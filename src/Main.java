@@ -38,7 +38,11 @@ public class Main {
 
 
     }
-
+    /**
+     * Método para inicializar el juego.
+     * Muestra un menú para que el jugador elija entre iniciar una nueva partida o salir del juego.
+     * @return No devuelve ningún valor.
+     */
     public void init() {
         int menuItem = 0;
             System.out.println("------- Menú -------");
@@ -67,13 +71,22 @@ public class Main {
             init();
             }
     }
+    /**
+     * Método para iniciar una nueva partida.
+     * Muestra un mensaje de inicio de partida y llama al método para ordenar los jugadores.
+     * @return No devuelve ningún valor.
+     */
     private void nuevaPartida() {
         // Lógica para una nueva partida
         System.out.println("Iniciando una nueva partida...");
         jugadors = ordenJugadores();
         turnoJugador1();
     }
-
+    /**
+     * Método para ordenar aleatoriamente los nombres de los jugadores.
+     * El jugador ingresa su nombre y luego se decide aleatoriamente el orden de los jugadores.
+     * @return Un arreglo de strings con los nombres de los jugadores en el orden determinado.
+     */
     private static String[] ordenJugadores() {
         //code ivan, mètode per ordre jugadors
         Scanner input = new Scanner(System.in);
@@ -116,7 +129,11 @@ public class Main {
         return ordre_final;
     }
 
-
+    /**
+     * Método que contiene las acciones a realizar durante el turno del jugador 1.
+     * Muestra los territorios del jugador, permite agregar soldados a un territorio y realizar acciones como atacar o pasar turno.
+     * @return No devuelve ningún valor.
+     */
     public void turnoJugador1() {
         int option = 0;
         String afegir_soldats;
@@ -263,7 +280,11 @@ public class Main {
             }
         } while (option == 2);
     }
-
+    /**
+     * Método que contiene las acciones a realizar durante el turno del jugador 2.
+     * Muestra los territorios del jugador, permite agregar soldados a un territorio y realizar acciones como atacar o pasar turno.
+     * @return No devuelve ningún valor.
+     */
     public void turnoJugador2(){
         int option = 0;
         String afegir_soldats;
@@ -410,7 +431,11 @@ public class Main {
             }
         } while (option == 2);
     }
-
+    /**
+     * Método que contiene las acciones a realizar durante el turno del jugador 3.
+     * Permite al jugador 3 realizar diversas acciones como agregar soldados a un territorio, atacar comunidades o pasar turno.
+     * @return No devuelve ningún valor.
+     */
     public void turnoJugador3(){
         int option = 0;
         String afegir_soldats;
@@ -557,7 +582,11 @@ public class Main {
             }
         } while(option == 2);
     }
-
+    /**
+     * Método que contiene las acciones a realizar durante el turno del jugador 4.
+     * Permite al jugador 4 realizar diversas acciones como agregar soldados a un territorio, atacar comunidades o pasar turno.
+     * @return No devuelve ningún valor.
+     */
     public void turnoJugador4(){
         int option = 0;
         String afegir_soldats;
@@ -704,7 +733,15 @@ public class Main {
             }
         } while(option == 2);
     }
-
+    /**
+     * Método para invadir un territorio durante un ataque.
+     * Realiza un ataque entre dos territorios y actualiza los territorios según el resultado del ataque.
+     * @param atacant El territorio atacante.
+     * @param defensor El territorio defensor.
+     * @param j1 Arreglo de territorios del atacante.
+     * @param j2 Arreglo de territorios del defensor.
+     * @return No devuelve ningún valor.
+     */
     private static void invadirTerritorio(String atacant, String defensor, String[] j1, String[] j2) {
         Random random = new Random();
         int x = comunitats.get(atacant);
@@ -751,7 +788,13 @@ public class Main {
             }
         }
     }
-
+    /**
+     * Método para determinar si un jugador ha ganado la partida.
+     * Verifica si un jugador ha conquistado todos los territorios, ha de tener 9 territorios (comunidades) consquistadas para ganar.
+     * @param jugador Arreglo de territorios del jugador.
+     * @param ganador Variable que indica si se ha ganado la partida.
+     * @return True si el jugador ha ganado la partida, False en caso contrario.
+     */
     private static boolean ganarPartida(String[] jugador, boolean ganador){
         ganador = false;
         int contador = 0;
