@@ -41,7 +41,6 @@ public class Main {
 
     public void init() {
         int menuItem = 0;
-        do {
             System.out.println("------- Menú -------");
             System.out.println("1. Nueva partida");
             System.out.println("2. Salir");
@@ -64,9 +63,9 @@ public class Main {
             }
             input.nextLine();
             System.out.println("");
-
-        } while (menuItem != 2);
-
+            if (menuItem != 2) {
+            init();
+            }
     }
     private void nuevaPartida() {
         // Lógica para una nueva partida
@@ -124,6 +123,12 @@ public class Main {
         boolean comprobacio;
         Scanner input = new Scanner(System.in);
         System.out.println("Torn de " + jugadors[0] + ".");
+        System.out.println("Tens els següents territoris: ");
+        for (int i=0; i<jugador1.length; i++) {
+            if (jugador1[i] != null) {
+                System.out.print(jugador1[i] + " ");
+            }
+        }
         System.out.println("Guanyes 2 soldats per inici de torn, a quina comunitat els vols posar?");
         do {
             comprobacio = true;
@@ -265,6 +270,12 @@ public class Main {
         boolean comprobacio;
         Scanner input = new Scanner(System.in);
         System.out.println("Torn de " + jugadors[1] + ".");
+        System.out.println("Tens els següents territoris: ");
+        for (int i=0; i<jugador2.length; i++) {
+            if (jugador2[i] != null) {
+                System.out.print(jugador2[i] + " ");
+            }
+        }
         System.out.println("Guanyes 2 soldats per inici de torn, a quina comunitat els vols posar?");
         do {
             comprobacio = true;
@@ -406,6 +417,12 @@ public class Main {
         boolean comprobacio;
         Scanner input = new Scanner(System.in);
         System.out.println("Torn de " + jugadors[2] + ".");
+        System.out.println("Tens els següents territoris: ");
+        for (int i=0; i<jugador3.length; i++) {
+            if (jugador3[i] != null) {
+                System.out.print(jugador3[i] + " ");
+            }
+        }
         System.out.println("Guanyes 2 soldats per inici de torn, a quina comunitat els vols posar?");
         do {
             comprobacio = true;
@@ -547,6 +564,12 @@ public class Main {
         boolean comprobacio;
         Scanner input = new Scanner(System.in);
         System.out.println("Torn de " + jugadors[3] + ".");
+        System.out.println("Tens els següents territoris: ");
+        for (int i=0; i<jugador4.length; i++) {
+            if (jugador4[i] != null) {
+                System.out.print(jugador4[i] + " ");
+            }
+        }
         System.out.println("Guanyes 2 soldats per inici de torn, a quina comunitat els vols posar?");
         do {
             comprobacio = true;
