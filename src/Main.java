@@ -7,7 +7,7 @@ public class Main {
     public String[] jugadors = new String[4];
     public boolean ganar = false;
     public String[] jugador1 = {"galicia", "asturias", "cantabria", "pais vasco", "", "", "", "", ""};
-    public String[] jugador2 = {"navarra", "la rioja", "aragon", "cataluña", "", "", "", "", ""};
+    public String[] jugador2 = {"navarra", "la rioja", "aragon", "cataluna", "", "", "", "", ""};
     public String[] jugador3 = {"castilla y leon", "madrid", "castilla la mancha", "extremadura", "", "", "", "", ""};
     public String[] jugador4 = {"andalucia", "murcia", "canarias", "baleares", "", "", "", "", ""};
     Scanner input = new Scanner(System.in);
@@ -228,22 +228,74 @@ public class Main {
             System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
         }
         do {
-            System.out.println("Què vols fer?");
-            System.out.println("1. Atacar una comunitat");
-            System.out.println("2. Passar torn");
-            option = input.nextInt();
-            if (option < 1 || option > 2) {
-                System.out.println("ERROR! Posa una opció vàlida.");
-            }
-        } while(option < 1 || option > 2);
-        switch (option) {
-            case 1:
+            do {
+                System.out.println("Què vols fer?");
+                System.out.println("1. Atacar una comunitat");
+                System.out.println("2. Veure estat comunitats autònomes");
+                System.out.println("3. Passar torn");
+                option = input.nextInt();
+                if (option < 1 || option > 3) {
+                    System.out.println("ERROR! Posa una opció vàlida.");
+                }
+            } while (option < 1 || option > 3);
+            switch (option) {
+                case 1:
 
-                break;
-            case 2:
-                turnoJugador2();
-                break;
-        }
+                    break;
+                case 2:
+                    int submenu = 0;
+                    do {
+                        System.out.println("De qui vols veure les comunitats autònomes?");
+                        System.out.println("1. " + jugadors[1]);
+                        System.out.println("2. " + jugadors[2]);
+                        System.out.println("3. " + jugadors[3]);
+                        System.out.println("4. Veure totes les comunitats amb el número de soldats");
+                        submenu = input.nextInt();
+                        if (submenu < 1 || submenu > 4) {
+                            System.out.println("ERROR! Posa una opció vàlida");
+                        }
+                        switch (submenu) {
+                            case 1:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador2.length; i++) {
+                                    if (jugador2[i] != null) {
+                                        System.out.print(jugador2[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 2:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador3.length; i++) {
+                                    if (jugador3[i] != null) {
+                                        System.out.print(jugador3[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 3:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador4.length; i++) {
+                                    if (jugador4[i] != null) {
+                                        System.out.print(jugador4[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 4:
+                                System.out.println("L'estat del mapa és el següent: ");
+                                for(Map.Entry<String, Integer> entry : comunitats.entrySet()) {
+                                    System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
+                                }
+                                break;
+                        }
+                    } while (submenu < 1 || submenu > 4);
+                    break;
+                case 3:
+                    turnoJugador2();
+                    break;
+            }
+        } while (option == 2);
     }
 
     public void turnoJugador2(){
@@ -273,21 +325,73 @@ public class Main {
             System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
         }
         do {
-            System.out.println("Què vols fer?");
-            System.out.println("1. Atacar una comunitat");
-            System.out.println("2. Passar torn");
-            option = input.nextInt();
-            if (option < 1 || option > 2) {
-                System.out.println("ERROR! Posa una opció vàlida.");
+            do {
+                System.out.println("Què vols fer?");
+                System.out.println("1. Atacar una comunitat");
+                System.out.println("2. Veure estat comunitats autònomes");
+                System.out.println("3. Passar torn");
+                option = input.nextInt();
+                if (option < 1 || option > 3) {
+                    System.out.println("ERROR! Posa una opció vàlida.");
+                }
+            } while (option < 1 || option > 3);
+            switch (option) {
+                case 1:
+                    break;
+                case 2:
+                    int submenu = 0;
+                    do {
+                        System.out.println("De qui vols veure les comunitats autònomes?");
+                        System.out.println("1. " + jugadors[0]);
+                        System.out.println("2. " + jugadors[2]);
+                        System.out.println("3. " + jugadors[3]);
+                        System.out.println("4. Veure totes les comunitats amb el número de soldats");
+                        submenu = input.nextInt();
+                        if (submenu < 1 || submenu > 4) {
+                            System.out.println("ERROR! Posa una opció vàlida");
+                        }
+                        switch (submenu) {
+                            case 1:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador1.length; i++) {
+                                    if (jugador1[i] != null) {
+                                        System.out.print(jugador1[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 2:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador3.length; i++) {
+                                    if (jugador3[i] != null) {
+                                        System.out.print(jugador3[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 3:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador4.length; i++) {
+                                    if (jugador4[i] != null) {
+                                        System.out.print(jugador4[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 4:
+                                System.out.println("L'estat del mapa és el següent: ");
+                                for(Map.Entry<String, Integer> entry : comunitats.entrySet()) {
+                                    System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
+                                }
+                                break;
+                        }
+                    } while (submenu < 1 || submenu > 4);
+                    break;
+                case 3:
+                    turnoJugador3();
+                    break;
             }
-        } while(option < 1 || option > 2);
-        switch (option) {
-            case 1:
-                break;
-            case 2:
-                turnoJugador3();
-                break;
-        }
+        } while (option == 2);
     }
 
     public void turnoJugador3(){
@@ -317,21 +421,73 @@ public class Main {
             System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
         }
         do {
-            System.out.println("Què vols fer?");
-            System.out.println("1. Atacar una comunitat");
-            System.out.println("2. Passar torn");
-            option = input.nextInt();
-            if (option < 1 || option > 2) {
-                System.out.println("ERROR! Posa una opció vàlida.");
+            do {
+                System.out.println("Què vols fer?");
+                System.out.println("1. Atacar una comunitat");
+                System.out.println("2. Veure estat comunitats autònomes");
+                System.out.println("3. Passar torn");
+                option = input.nextInt();
+                if (option < 1 || option > 3) {
+                    System.out.println("ERROR! Posa una opció vàlida.");
+                }
+            } while (option < 1 || option > 3);
+            switch (option) {
+                case 1:
+                    break;
+                case 2:
+                    int submenu = 0;
+                    do {
+                        System.out.println("De qui vols veure les comunitats autònomes?");
+                        System.out.println("1. " + jugadors[0]);
+                        System.out.println("2. " + jugadors[1]);
+                        System.out.println("3. " + jugadors[3]);
+                        System.out.println("4. Veure totes les comunitats amb el número de soldats");
+                        submenu = input.nextInt();
+                        if (submenu < 1 || submenu > 4) {
+                            System.out.println("ERROR! Posa una opció vàlida");
+                        }
+                        switch (submenu) {
+                            case 1:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador1.length; i++) {
+                                    if (jugador1[i] != null) {
+                                        System.out.print(jugador1[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 2:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador2.length; i++) {
+                                    if (jugador2[i] != null) {
+                                        System.out.print(jugador2[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 3:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador4.length; i++) {
+                                    if (jugador4[i] != null) {
+                                        System.out.print(jugador4[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 4:
+                                System.out.println("L'estat del mapa és el següent: ");
+                                for(Map.Entry<String, Integer> entry : comunitats.entrySet()) {
+                                    System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
+                                }
+                                break;
+                        }
+                    } while (submenu < 1 || submenu > 4);
+                    break;
+                case 3:
+                    turnoJugador4();
+                    break;
             }
-        } while(option < 1 || option > 2);
-        switch (option) {
-            case 1:
-                break;
-            case 2:
-                turnoJugador4();
-                break;
-        }
+        } while(option == 2);
     }
 
     public void turnoJugador4(){
@@ -361,21 +517,73 @@ public class Main {
             System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
         }
         do {
-            System.out.println("Què vols fer?");
-            System.out.println("1. Atacar una comunitat");
-            System.out.println("2. Passar torn");
-            option = input.nextInt();
-            if (option < 1 || option > 2) {
-                System.out.println("ERROR! Posa una opció vàlida.");
+            do {
+                System.out.println("Què vols fer?");
+                System.out.println("1. Atacar una comunitat");
+                System.out.println("2. Veure estat comunitats autònomes");
+                System.out.println("3. Passar torn");
+                option = input.nextInt();
+                if (option < 1 || option > 3) {
+                    System.out.println("ERROR! Posa una opció vàlida.");
+                }
+            } while (option < 1 || option > 3);
+            switch (option) {
+                case 1:
+                    break;
+                case 2:
+                    int submenu = 0;
+                    do {
+                        System.out.println("De qui vols veure les comunitats autònomes?");
+                        System.out.println("1. " + jugadors[0]);
+                        System.out.println("2. " + jugadors[1]);
+                        System.out.println("3. " + jugadors[2]);
+                        System.out.println("4. Veure totes les comunitats amb el número de soldats");
+                        submenu = input.nextInt();
+                        if (submenu < 1 || submenu > 4) {
+                            System.out.println("ERROR! Posa una opció vàlida");
+                        }
+                        switch (submenu) {
+                            case 1:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador1.length; i++) {
+                                    if (jugador1[i] != null) {
+                                        System.out.print(jugador1[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 2:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador2.length; i++) {
+                                    if (jugador2[i] != null) {
+                                        System.out.print(jugador2[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 3:
+                                System.out.println("Aquest jugador té els següents territoris: ");
+                                for (int i=0; i<jugador3.length; i++) {
+                                    if (jugador4[i] != null) {
+                                        System.out.print(jugador3[i] + " ");
+                                    }
+                                }
+                                System.out.println();
+                                break;
+                            case 4:
+                                System.out.println("L'estat del mapa és el següent: ");
+                                for(Map.Entry<String, Integer> entry : comunitats.entrySet()) {
+                                    System.out.println(entry.getKey() + ": " + entry.getValue() + " soldats");
+                                }
+                                break;
+                        }
+                    } while (submenu < 1 || submenu > 4);
+                    break;
+                case 3:
+                    turnoJugador1();
+                    break;
             }
-        } while(option < 1 || option > 2);
-        switch (option) {
-            case 1:
-                break;
-            case 2:
-                turnoJugador1();
-                break;
-        }
+        } while(option == 2);
     }
 
     private static void estadoActual() {
@@ -513,7 +721,7 @@ public class Main {
             System.out.println("Has perdido el territorio.");
         } else {
             // El jugador conserva el territorio
-            System.out.println("Has mantenido tu territorio");
+            System.out.println("Has mantenido tu territorio.");
         }
     }
     private static boolean ganarPartida(String[] jugador){
