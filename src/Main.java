@@ -240,7 +240,8 @@ public class Main {
             } while (option < 1 || option > 3);
             switch (option) {
                 case 1:
-
+                    System.out.println("Selecciona el territorio que quieres atacar:");
+                    invadirTerritorio(afegir_soldats);
                     break;
                 case 2:
                     int submenu = 0;
@@ -337,6 +338,8 @@ public class Main {
             } while (option < 1 || option > 3);
             switch (option) {
                 case 1:
+                    System.out.println("Selecciona el territorio que quieres atacar:");
+                    invadirTerritorio(afegir_soldats);
                     break;
                 case 2:
                     int submenu = 0;
@@ -433,6 +436,8 @@ public class Main {
             } while (option < 1 || option > 3);
             switch (option) {
                 case 1:
+                    System.out.println("Selecciona el territorio que quieres atacar:");
+                    invadirTerritorio(afegir_soldats);
                     break;
                 case 2:
                     int submenu = 0;
@@ -529,6 +534,8 @@ public class Main {
             } while (option < 1 || option > 3);
             switch (option) {
                 case 1:
+                    System.out.println("Selecciona el territorio que quieres atacar:");
+                    invadirTerritorio(afegir_soldats);
                     break;
                 case 2:
                     int submenu = 0;
@@ -590,140 +597,40 @@ public class Main {
 
     }
 
-    private static void invadirTerritorio(int jugador) {
-        // Sumar los soldados al territorio
-        switch (jugador) {
-            case 1:
-                galicia += 2;
-                break;
-            case 2:
-                asturias += 2;
-                break;
-            case 3:
-                cantabria += 2;
-                break;
-            case 4:
-                pais_vasco += 2;
-                break;
-            case 5:
-                navarra += 2;
-                break;
-            case 6:
-                la_rioja += 2;
-                break;
-            case 7:
-                aragon += 2;
-                break;
-            case 8:
-                cataluna += 2;
-                break;
-            case 9:
-                castilla_y_leon += 2;
-                break;
-            case 10:
-                madrid += 2;
-                break;
-            case 11:
-                castilla_la_mancha += 2;
-                break;
-            case 12:
-                extremadura += 2;
-                break;
-            case 13:
-                andalucia += 2;
-                break;
-            case 14:
-                murcia += 2;
-                break;
-            case 15:
-                canarias += 2;
-                break;
-            case 16:
-                baleares += 2;
-                break;
-            default:
-                break;
-            }
-            System.out.println("Has invadido con éxito el territorio.");
-        }
-    private void ganarTerritorio(int jugador) {
+    private static void invadirTerritorio(String territorioAtacante) {
         Random random = new Random();
-        int probabilidad = random.nextInt(2); // 50% de probabilidad
+        // Obtener el número de soldados en el territorio atacante
+        int soldadosAtacante = comunitats.get(territorioAtacante);
 
-        if (probabilidad == 0) {
-            // El jugador gana la batalla
-            System.out.println("¡Has ganado la batalla!");
-            invadirTerritorio(jugador); // Se suman los soldados al territorio
+        // Seleccionar un territorio aleatorio del oponente
+        ArrayList<String> territoriosOponente = new ArrayList<>(comunitats.keySet());
+        territoriosOponente.remove(territorioAtacante); // Remover el territorio atacante de la lista
+        String territorioDefensor = territoriosOponente.get(random.nextInt(territoriosOponente.size()));
+
+        // Obtener el número de soldados en el territorio defensor
+        int soldadosDefensor = comunitats.get(territorioDefensor);
+
+        // Calcular el porcentaje de probabilidad de ganar el ataque
+        double probabilidadAtaque = (double) soldadosAtacante / (soldadosAtacante + soldadosDefensor);
+
+        // Generar un número aleatorio para determinar el resultado del ataque
+        double resultado = random.nextDouble();
+
+        if (resultado < probabilidadAtaque) {
+            // El atacante gana el ataque
+            System.out.println("¡El ataque ha tenido éxito! " + territorioAtacante + " conquista " + territorioDefensor);
+            // El atacante se lleva todos los soldados del defensor
+            comunitats.put(territorioAtacante, soldadosAtacante + soldadosDefensor);
+            comunitats.put(territorioDefensor, 0);
         } else {
-            // El jugador pierde la batalla
-            System.out.println("¡Has perdido la batalla!");
+            // El atacante pierde el ataque
+            System.out.println("El ataque ha fracasado. " + territorioAtacante + " intentó conquistar " + territorioDefensor);
+            // El defensor se lleva los soldados del atacante
+            comunitats.put(territorioAtacante, 0);
+            comunitats.put(territorioDefensor, soldadosAtacante + soldadosDefensor);
         }
     }
 
-    private void eliminarTerritorio(int jugador) {
-        Random random = new Random();
-        int probabilidad = random.nextInt(2); // 50% de probabilidad
-
-        if (probabilidad == 0) {
-            // El jugador pierde el territorio
-            switch (jugador) {
-                case 1:
-                    galicia = 0;
-                    break;
-                case 2:
-                    asturias = 0;
-                    break;
-                case 3:
-                    cantabria = 0;
-                    break;
-                case 4:
-                    pais_vasco = 0;
-                    break;
-                case 5:
-                    navarra = 0;
-                    break;
-                case 6:
-                    la_rioja = 0;
-                    break;
-                case 7:
-                    aragon = 0;
-                    break;
-                case 8:
-                    cataluna = 0;
-                    break;
-                case 9:
-                    castilla_y_leon = 0;
-                    break;
-                case 10:
-                    madrid = 0;
-                    break;
-                case 11:
-                    castilla_la_mancha = 0;
-                    break;
-                case 12:
-                    extremadura = 0;
-                    break;
-                case 13:
-                    andalucia = 0;
-                    break;
-                case 14:
-                    murcia = 0;
-                    break;
-                case 15:
-                    canarias = 0;
-                    break;
-                case 16:
-                    baleares = 0;
-                    break;
-                default:
-                    break;
-            }
-            System.out.println("Has perdido el territorio.");
-        } else {
-            // El jugador conserva el territorio
-            System.out.println("Has mantenido tu territorio. ");
-        }
-    }
     private static boolean ganarPartida(String[] jugador){
         boolean ganador = false;
         int contador = 0;
@@ -736,8 +643,5 @@ public class Main {
             ganador = true;
         }
         return ganador;
-    }
-    private static void invadirFrancia(){
-
     }
 }
