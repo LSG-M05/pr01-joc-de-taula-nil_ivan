@@ -11,30 +11,11 @@ public class Main {
     public String[] jugador3 = {"castilla y leon", "madrid", "castilla la mancha", "extremadura", "", "", "", "", ""};
     public String[] jugador4 = {"andalucia", "murcia", "canarias", "baleares", "", "", "", "", ""};
     Scanner input = new Scanner(System.in);
-
     public static int jugadores = 4;
     public static int[] territorios = new int[17];
 
     //Declaración variables comunidades autónomas
     private static final Map<String, Integer> comunitats = new HashMap<>();
-    public static int galicia = 2;
-    public static int asturias = 2;
-    public static int cantabria = 2;
-    public static int pais_vasco = 2;
-    public static int navarra = 2;
-    public static int la_rioja = 2;
-    public static int aragon = 2;
-    public static int cataluna = 2;
-    public static int castilla_y_leon = 2;
-    public static int madrid = 2;
-    public static int castilla_la_mancha = 2;
-    public static int extremadura = 2;
-    public static int andalucia = 2;
-    public static int murcia = 2;
-    public static int canarias = 2;
-    public static int baleares = 2;
-
-
     public static void main(String[] args) {
         comunitats.put("galicia", 2);
         comunitats.put("asturias", 2);
@@ -52,7 +33,6 @@ public class Main {
         comunitats.put("murcia", 2);
         comunitats.put("canarias", 2);
         comunitats.put("baleares", 2);
-
         Main main = new Main();
         main.init();
 
@@ -92,7 +72,6 @@ public class Main {
         // Lógica para una nueva partida
         System.out.println("Iniciando una nueva partida...");
         jugadors = ordenJugadores();
-        asignacionTerritorios();
         turnoJugador1();
     }
 
@@ -138,69 +117,7 @@ public class Main {
         return ordre_final;
     }
 
-    private void asignacionTerritorios() {
-        Random random = new Random();
 
-        for (int i = 0; i < territorios.length; i++) {
-            if (territorios[i] > 0) {
-                int randomPlayer = random.nextInt(jugadores);
-                switch (i) {
-                    case 0:
-                        galicia--;
-                        break;
-                    case 1:
-                        asturias--;
-                        break;
-                    case 2:
-                        cantabria--;
-                        break;
-                    case 3:
-                        pais_vasco--;
-                        break;
-                    case 4:
-                        navarra--;
-                        break;
-                    case 5:
-                        la_rioja--;
-                        break;
-                    case 6:
-                        aragon--;
-                        break;
-                    case 7:
-                        cataluna--;
-                        break;
-                    case 8:
-                        castilla_y_leon--;
-                        break;
-                    case 9:
-                        madrid--;
-                        break;
-                    case 10:
-                        castilla_la_mancha--;
-                        break;
-                    case 11:
-                        extremadura--;
-                        break;
-                    case 12:
-                        andalucia--;
-                        break;
-                    case 13:
-                        murcia--;
-                        break;
-                    case 14:
-                        canarias--;
-                        break;
-                    case 15:
-                        baleares--;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        System.out.println("Asignación de territorios completada.");
-    }
     public void turnoJugador1() {
         int option = 0;
         String afegir_soldats;
@@ -212,8 +129,10 @@ public class Main {
             comprobacio = true;
             afegir_soldats = input.next();
             for (int i=0; i<jugador1.length; i++){
-                if (afegir_soldats.equals(jugador1[i])) {
-                    comprobacio = false;
+                if (jugador1[i] != null) {
+                    if (afegir_soldats.equals(jugador1[i])) {
+                        comprobacio = false;
+                    }
                 }
             }
             if(comprobacio){
@@ -240,8 +159,49 @@ public class Main {
             } while (option < 1 || option > 3);
             switch (option) {
                 case 1:
-                    System.out.println("Selecciona el territorio que quieres atacar:");
-                    invadirTerritorio(afegir_soldats);
+                    String atacant;
+                    String defensor;
+                    System.out.println("Sel·lecciona el territori amb el que atacaràs:");
+                    do {
+                        comprobacio = true;
+                        atacant = input.next();
+                        for (int i=0; i<jugador1.length; i++){
+                            if (jugador1[i] != null) {
+                                if (atacant.equals(jugador1[i])) {
+                                    comprobacio = false;
+                                }
+                            }
+                        }
+                        if(comprobacio){
+                            System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no la pots atacar.");
+                        }
+                    } while(comprobacio);
+                    System.out.println("Sel·lecciona el territori que atacaràs:");
+                    do {
+                        comprobacio = true;
+                        defensor = input.next();
+                        for (int i=0; i<9; i++){
+                            if (jugador2[i] != null && defensor.equals(jugador2[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador1, jugador2);
+                            } else if (jugador3[i] != null && defensor.equals(jugador3[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador1, jugador3);
+                            } else if (jugador4[i] != null && defensor.equals(jugador4[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador1, jugador4);
+                            }
+                        }
+                        if(comprobacio){
+                            System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no la pots atacar.");
+                        }
+                    } while(comprobacio);
+                    ganar = ganarPartida(jugador1, ganar);
+                    if(ganar){
+                        System.out.println("Enhorabona! El jugador " + jugadors[0] + " ha guanyat la partida!");
+                    } else {
+                        turnoJugador2();
+                    }
                     break;
                 case 2:
                     int submenu = 0;
@@ -310,8 +270,10 @@ public class Main {
             comprobacio = true;
             afegir_soldats = input.next();
             for (int i=0; i<jugador2.length; i++){
-                if (afegir_soldats.equals(jugador2[i])) {
-                    comprobacio = false;
+                if(jugador2[i] != null) {
+                    if (afegir_soldats.equals(jugador2[i])) {
+                        comprobacio = false;
+                    }
                 }
             }
             if(comprobacio){
@@ -338,8 +300,49 @@ public class Main {
             } while (option < 1 || option > 3);
             switch (option) {
                 case 1:
-                    System.out.println("Selecciona el territorio que quieres atacar:");
-                    invadirTerritorio(afegir_soldats);
+                    String atacant;
+                    String defensor;
+                    System.out.println("Sel·lecciona el territori amb el que atacaràs:");
+                    do {
+                        comprobacio = true;
+                        atacant = input.next();
+                        for (int i=0; i<jugador2.length; i++){
+                            if (jugador2[i] != null) {
+                                if (atacant.equals(jugador2[i])) {
+                                    comprobacio = false;
+                                }
+                            }
+                        }
+                        if(comprobacio){
+                            System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no la pots atacar.");
+                        }
+                    } while(comprobacio);
+                    System.out.println("Sel·lecciona el territori que atacaràs:");
+                    do {
+                        comprobacio = true;
+                        defensor = input.next();
+                        for (int i=0; i<9; i++){
+                            if (jugador1[i] != null && defensor.equals(jugador1[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador2, jugador1);
+                            } else if (jugador3[i] != null && defensor.equals(jugador3[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador2, jugador3);
+                            } else if (jugador4[i] != null && defensor.equals(jugador4[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador2, jugador4);
+                            }
+                        }
+                        if(comprobacio){
+                            System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no la pots atacar.");
+                        }
+                    } while(comprobacio);
+                    ganar = ganarPartida(jugador2, ganar);
+                    if(ganar){
+                        System.out.println("Enhorabona! El jugador " + jugadors[1] + " ha guanyat la partida!");
+                    } else {
+                        turnoJugador3();
+                    }
                     break;
                 case 2:
                     int submenu = 0;
@@ -408,8 +411,10 @@ public class Main {
             comprobacio = true;
             afegir_soldats = input.next();
             for (int i=0; i<jugador3.length; i++){
-                if (afegir_soldats.equals(jugador3[i])) {
-                    comprobacio = false;
+                if (jugador3[i] != null) {
+                    if (afegir_soldats.equals(jugador3[i])) {
+                        comprobacio = false;
+                    }
                 }
             }
             if(comprobacio){
@@ -436,8 +441,49 @@ public class Main {
             } while (option < 1 || option > 3);
             switch (option) {
                 case 1:
-                    System.out.println("Selecciona el territorio que quieres atacar:");
-                    invadirTerritorio(afegir_soldats);
+                    String atacant;
+                    String defensor;
+                    System.out.println("Sel·lecciona el territori amb el que atacaràs:");
+                    do {
+                        comprobacio = true;
+                        atacant = input.next();
+                        for (int i=0; i<jugador3.length; i++){
+                            if (jugador3[i] != null) {
+                                if (atacant.equals(jugador3[i])) {
+                                    comprobacio = false;
+                                }
+                            }
+                        }
+                        if(comprobacio){
+                            System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no la pots atacar.");
+                        }
+                    } while(comprobacio);
+                    System.out.println("Sel·lecciona el territori que atacaràs:");
+                    do {
+                        comprobacio = true;
+                        defensor = input.next();
+                        for (int i=0; i<9; i++){
+                            if (jugador1[i] != null && defensor.equals(jugador1[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador3, jugador1);
+                            } else if (jugador2[i] != null && defensor.equals(jugador2[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador3, jugador2);
+                            } else if (jugador4[i] != null && defensor.equals(jugador4[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador3, jugador4);
+                            }
+                        }
+                        if(comprobacio){
+                            System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no la pots atacar.");
+                        }
+                    } while(comprobacio);
+                    ganar = ganarPartida(jugador3, ganar);
+                    if(ganar){
+                        System.out.println("Enhorabona! El jugador " + jugadors[2] + " ha guanyat la partida!");
+                    } else {
+                        turnoJugador4();
+                    }
                     break;
                 case 2:
                     int submenu = 0;
@@ -506,8 +552,10 @@ public class Main {
             comprobacio = true;
             afegir_soldats = input.next();
             for (int i=0; i<jugador4.length; i++){
-                if (afegir_soldats.equals(jugador4[i])) {
-                    comprobacio = false;
+                if (jugador4[i] != null) {
+                    if (afegir_soldats.equals(jugador4[i])) {
+                        comprobacio = false;
+                    }
                 }
             }
             if(comprobacio){
@@ -534,8 +582,49 @@ public class Main {
             } while (option < 1 || option > 3);
             switch (option) {
                 case 1:
-                    System.out.println("Selecciona el territorio que quieres atacar:");
-                    invadirTerritorio(afegir_soldats);
+                    String atacant;
+                    String defensor;
+                    System.out.println("Sel·lecciona el territori amb el que atacaràs:");
+                    do {
+                        comprobacio = true;
+                        atacant = input.next();
+                        for (int i=0; i<jugador4.length; i++){
+                            if (jugador4[i] != null) {
+                                if (atacant.equals(jugador4[i])) {
+                                    comprobacio = false;
+                                }
+                            }
+                        }
+                        if(comprobacio){
+                            System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no la pots atacar.");
+                        }
+                    } while(comprobacio);
+                    System.out.println("Sel·lecciona el territori que atacaràs:");
+                    do {
+                        comprobacio = true;
+                        defensor = input.next();
+                        for (int i=0; i<9; i++){
+                            if (jugador1[i] != null && defensor.equals(jugador1[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador4, jugador1);
+                            } else if (jugador2[i] != null && defensor.equals(jugador2[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador4, jugador2);
+                            } else if (jugador3[i] != null && defensor.equals(jugador3[i])) {
+                                comprobacio = false;
+                                invadirTerritorio(atacant, defensor, jugador4, jugador3);
+                            }
+                        }
+                        if(comprobacio){
+                            System.out.println("ERROR! Aquesta comunitat autònoma no existeix o no la pots atacar.");
+                        }
+                    } while(comprobacio);
+                    ganar = ganarPartida(jugador4, ganar);
+                    if(ganar){
+                        System.out.println("Enhorabona! El jugador " + jugadors[3] + " ha guanyat la partida!");
+                    } else {
+                        turnoJugador1();
+                    }
                     break;
                 case 2:
                     int submenu = 0;
@@ -593,49 +682,58 @@ public class Main {
         } while(option == 2);
     }
 
-    private static void estadoActual() {
-
-    }
-
-    private static void invadirTerritorio(String territorioAtacante) {
+    private static void invadirTerritorio(String atacant, String defensor, String[] j1, String[] j2) {
         Random random = new Random();
-        // Obtener el número de soldados en el territorio atacante
-        int soldadosAtacante = comunitats.get(territorioAtacante);
-
-        // Seleccionar un territorio aleatorio del oponente
-        ArrayList<String> territoriosOponente = new ArrayList<>(comunitats.keySet());
-        territoriosOponente.remove(territorioAtacante); // Remover el territorio atacante de la lista
-        String territorioDefensor = territoriosOponente.get(random.nextInt(territoriosOponente.size()));
-
-        // Obtener el número de soldados en el territorio defensor
-        int soldadosDefensor = comunitats.get(territorioDefensor);
-
-        // Calcular el porcentaje de probabilidad de ganar el ataque
-        double probabilidadAtaque = (double) soldadosAtacante / (soldadosAtacante + soldadosDefensor);
-
-        // Generar un número aleatorio para determinar el resultado del ataque
-        double resultado = random.nextDouble();
-
-        if (resultado < probabilidadAtaque) {
-            // El atacante gana el ataque
-            System.out.println("¡El ataque ha tenido éxito! " + territorioAtacante + " conquista " + territorioDefensor);
-            // El atacante se lleva todos los soldados del defensor
-            comunitats.put(territorioAtacante, soldadosAtacante + soldadosDefensor);
-            comunitats.put(territorioDefensor, 0);
+        int x = comunitats.get(atacant);
+        int y = comunitats.get(defensor);
+        int z = x + y;
+        int aleatori = random.nextInt(z) + 1;
+        boolean resultat;
+        if (aleatori <= y) {
+            System.out.println("L'atac no ha tingut èxit, has perdut el territori de " + atacant + ".");
+            resultat = false;
         } else {
-            // El atacante pierde el ataque
-            System.out.println("El ataque ha fracasado. " + territorioAtacante + " intentó conquistar " + territorioDefensor);
-            // El defensor se lleva los soldados del atacante
-            comunitats.put(territorioAtacante, 0);
-            comunitats.put(territorioDefensor, soldadosAtacante + soldadosDefensor);
+            System.out.println("L'atac ha tingut èxit! Has guanyat el territori de " + defensor + ".");
+            resultat = true;
+        }
+        if(resultat == true) {
+            for(int i=0; i< j1.length; i++) {
+                if (j1[i].isEmpty() || j1[i] == null) {
+                    j1[i] = defensor;
+                    break;
+                }
+            }
+            for(int i=0; i<j2.length; i++) {
+                if (j2[i] != null) {
+                    if (j2[i].equals(defensor)) {
+                        j2[i] = "";
+                        break;
+                    }
+                }
+            }
+        } else {
+            for(int i=0; i< j2.length; i++) {
+                if (j2[i].isEmpty() || j2[i] == null) {
+                    j2[i] = atacant;
+                    break;
+                }
+            }
+            for(int i=0; i<j1.length; i++) {
+                if (j1[i] != null) {
+                    if (j1[i].equals(atacant)) {
+                        j1[i] = "";
+                        break;
+                    }
+                }
+            }
         }
     }
 
-    private static boolean ganarPartida(String[] jugador){
-        boolean ganador = false;
+    private static boolean ganarPartida(String[] jugador, boolean ganador){
+        ganador = false;
         int contador = 0;
         for(int i=0; i < jugador.length; i++) {
-            if (jugador[i] != null) {
+            if (jugador[i] != "") {
                 contador = contador + 1;
             }
         }
